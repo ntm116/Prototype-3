@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool isOnGround = true;
 
+    public bool gameOver;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,14 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // if ground
-        isOnGround = true;
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = true;
+            print("Ground");
+        } else if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            gameOver = true;
+            print("over");
+        }
     }
 }
